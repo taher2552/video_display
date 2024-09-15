@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video with Controls</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            /* Set the height to 350px */
+            overflow: hidden;
+        }
+
+        .background-clip {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensures the video is fully visible */
+            object-position: center;
+            /* Keeps the video centered */
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            z-index: 1;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+
+        .content h1 {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .content a {
+            font-size: 23px;
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .content a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 2;
+            /* Ensure the controls are above the video */
+        }
+
+        .controls button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #FB5D52;
+            border-color: #FB5D52;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 33px;
+            color: #FFFFFF !important;
+            white-space: nowrap;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <video id="myVideo" autoplay loop muted playsinline class="background-clip">
+            <source src="fc2.mp4" type="video/mp4">
+        </video>
+
+        <div class="content">
+            <h1>Unleash the power of academy</h1>
+            <a href="#">Register Now</a>
+        </div>
+
+        <div class="controls">
+            <button id="playPauseBtn">Pause</button>
+            <button id="muteBtn">Unmute</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var video = $('#myVideo')[0]; // Get video element
+            var playPauseBtn = $('#playPauseBtn');
+            var muteBtn = $('#muteBtn');
+
+            // Play/Pause functionality
+            playPauseBtn.click(function () {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.text('Pause');
+                } else {
+                    video.pause();
+                    playPauseBtn.text('Play');
+                }
+            });
+
+            // Mute/Unmute functionality
+            muteBtn.click(function () {
+                if (video.muted) {
+                    video.muted = false;
+                    muteBtn.text('Mute');
+                } else {
+                    video.muted = true;
+                    muteBtn.text('Unmute');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
